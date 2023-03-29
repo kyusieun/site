@@ -68,81 +68,71 @@
       </div>
     </div>
   </div>
-
-  <!-- Navbar -->
-  <div class="m-auto" style="max-width: 1000px">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">모아봤SSU</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">리스트</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">쪽지</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-
-          <!-- Button trigger modal -->
+  <div class="container mb-5">
+    <!-- Navbar -->
+    <div class="m-auto" style="max-width: 1000px">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">모아봤SSU</a>
           <button
+            class="navbar-toggler"
             type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            style="margin-left: 10px"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            로그인
+            <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >리스트</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">쪽지</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              style="margin-left: 10px"
+            >
+              LOGIN
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <nav class="navbar bg-f0">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">필터</span>
-      </div>
-    </nav>
-
+      <nav class="navbar bg-f0 rounded">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">필터</span>
+        </div>
+      </nav>
+    </div>
     <!-- 카드 -->
     <div class="row p-4">
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">인기 게시물</h5>
+            <h5 class="card-title">인스타그램</h5>
             <p class="card-text">상세내용</p>
             <a href="#" class="btn btn-primary">버튼</a>
           </div>
@@ -158,33 +148,32 @@
         </div>
       </div>
     </div>
+    <!-- 테이블 -->
+    <table class="table table-hover table-bordered m-auto shadow">
+      <thead>
+        <tr class="bg-f0">
+          <th scope="col">제목</th>
+          <th scope="col">주최기관</th>
+          <th scope="col">내용</th>
+          <th scope="col">신청시작일</th>
+          <th scope="col">마감일</th>
+          <th scope="col">활동시작일</th>
+          <th scope="col">활동마감일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="a in 13" :key="a">
+          <th scope="row">Dummy</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <!-- 테이블 -->
-  <table class="table table-hover table-bordered m-auto mw-90 shadow">
-    <thead>
-      <tr class="bg-f0">
-        <th scope="col">제목</th>
-        <th scope="col">주최기관</th>
-        <th scope="col">내용</th>
-        <th scope="col">신청시작일</th>
-        <th scope="col">마감일</th>
-        <th scope="col">활동시작일</th>
-        <th scope="col">활동마감일</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="a in 20" :key="a">
-        <th scope="row">Dummy</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </template>
 
 <script>
