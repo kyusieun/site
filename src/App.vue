@@ -9,8 +9,9 @@
   >
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <!-- <h5 class="modal-title">Modal title</h5> -->
+          <h2 class="fw-bold mb-0">로그인</h2>
           <button
             type="button"
             class="btn-close"
@@ -18,21 +19,57 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">...</div>
+
+        <div class="modal-body p-5 pt-0 pb-0">
+          <form class="">
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control rounded-4"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">ID</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control rounded-4"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">PW</label>
+            </div>
+            <button
+              class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
+              type="submit"
+            >
+              로그인
+            </button>
+            <hr class="my-4" />
+          </form>
+        </div>
+        <div class="mx-5">
+          <h2 class="fs-5 fw-bold mb-3 text-start">간편로그인</h2>
+          <div class="img-container">
+            <img src="./assets/kakao_login_large_narrow.png" />
+            <img src="./assets/btn_google_signin_dark_normal_web@2x.png" />
+          </div>
+        </div>
         <div class="modal-footer">
           <button
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
           >
-            Close
+            닫기
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Navbar -->
   <div class="m-auto" style="max-width: 1000px">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -51,10 +88,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">리스트</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">쪽지</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -80,17 +117,6 @@
             </li>
           </ul>
 
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
           <!-- Button trigger modal -->
           <button
             type="button"
@@ -99,13 +125,13 @@
             data-bs-target="#exampleModal"
             style="margin-left: 10px"
           >
-            Login
+            로그인
           </button>
         </div>
       </div>
     </nav>
 
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-f0">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">필터</span>
       </div>
@@ -135,9 +161,9 @@
   </div>
 
   <!-- 테이블 -->
-  <table class="table table-hover table-bordered m-auto" style="max-width: 90%">
+  <table class="table table-hover table-bordered m-auto mw-90 shadow">
     <thead>
-      <tr class="table-light">
+      <tr class="bg-f0">
         <th scope="col">제목</th>
         <th scope="col">주최기관</th>
         <th scope="col">내용</th>
@@ -176,4 +202,18 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+.mw-90 {
+  max-width: 90%;
+}
+.bg-f0 {
+  background-color: #f0f0f0;
+}
+.img-container {
+  object-fit: contain;
+}
+/* .img-container > img {
+  width: 350px;
+  height: 60px;
+} */
 </style>
