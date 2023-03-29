@@ -68,82 +68,71 @@
       </div>
     </div>
   </div>
+
   <div class="container mb-5">
     <!-- Navbar -->
-    <div class="m-auto" style="max-width: 1000px">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">모아봤SSU</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"
-                  >리스트</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">쪽지</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-            <!-- Button trigger modal -->
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              style="margin-left: 10px"
-            >
-              LOGIN
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">모아봤SSU</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">리스트</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">쪽지</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
             </button>
-          </div>
-        </div>
-      </nav>
-
-      <nav class="navbar bg-f0 rounded">
-        <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1">필터</span>
-        </div>
-      </nav>
-    </div>
-    <!-- 카드 -->
-    <div class="row p-4">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">인스타그램</h5>
-            <p class="card-text">상세내용</p>
-            <a href="#" class="btn btn-primary">버튼</a>
-          </div>
+          </form>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            style="margin-left: 10px"
+          >
+            LOGIN
+          </button>
         </div>
       </div>
-      <div class="col-sm-6">
+    </nav>
+
+    <nav class="navbar bg-f0 rounded">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">필터</span>
+      </div>
+    </nav>
+    <!-- 카드 -->
+    <div class="row p-4">
+      <div class="col-sm-4" v-for="a in 3" :key="a">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">인기 게시물</h5>
-            <p class="card-text">상세내용</p>
-            <a href="#" class="btn btn-primary">버튼</a>
+            <p class="card-text insta-container">
+              <img src="./assets/insta_sample_thumbnail.jpg" />
+            </p>
+            <h5 class="card-title">IT대학 학생회 신입부원 모집(키워드)</h5>
           </div>
         </div>
       </div>
@@ -201,8 +190,11 @@ export default {
 .img-container {
   object-fit: contain;
 }
-/* .img-container > img {
-  width: 350px;
-  height: 60px;
-} */
+.insta-container {
+  object-fit: contain;
+}
+.insta-container > img {
+  width: 100%;
+  height: 100%;
+}
 </style>
