@@ -11,46 +11,11 @@
       <div class="modal-content">
         <div class="modal-header p-5 pb-4 border-bottom-0">
           <!-- <h5 class="modal-title">Modal title</h5> -->
-          <h2 class="fw-bold mb-0">로그인</h2>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <h2 class="fw-bold mb-0">간편로그인</h2>
         </div>
 
-        <div class="modal-body p-5 pt-0 pb-0">
-          <form class="">
-            <div class="form-floating mb-3">
-              <input
-                type="email"
-                class="form-control rounded-4"
-                id="floatingInput"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">ID</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control rounded-4"
-                id="floatingPassword"
-                placeholder="Password"
-              />
-              <label for="floatingPassword">PW</label>
-            </div>
-            <button
-              class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
-              type="submit"
-            >
-              로그인
-            </button>
-            <hr class="my-4" />
-          </form>
-        </div>
+        <div class="modal-body p-5 pt-0 pb-0"></div>
         <div class="mx-5">
-          <h2 class="fs-5 fw-bold mb-3 text-start">간편로그인</h2>
           <div class="img-container">
             <img src="./assets/kakao_login_large_narrow.png" />
             <img src="./assets/btn_google_signin_dark_normal_web@2x.png" />
@@ -73,18 +38,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">모아봤SSU</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <img class="nav-logo" src="./assets/Nav-logo.png" />
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -101,19 +55,16 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
           </form>
           <!-- Button trigger modal -->
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-outline-dark"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             style="margin-left: 10px"
           >
-            LOGIN
+            로그인
           </button>
         </div>
       </div>
@@ -121,22 +72,68 @@
 
     <nav class="navbar bg-f0 rounded">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">필터</span>
+        <span></span>
+        <span>
+          <button
+            class="btn btn-light mx-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseCheck"
+            aria-expanded="false"
+            aria-controls="collapseCheck"
+          >
+            필터
+          </button>
+          <button
+            class="btn btn-light"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseInsta"
+            aria-expanded="false"
+            aria-controls="collapseInsta"
+          >
+            더보기
+          </button>
+        </span>
       </div>
     </nav>
+
+    <div class="collapse text-start" id="collapseCheck">
+      <div class="form-check" v-for="a in 6" :key="a">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          Default checkbox
+        </label>
+      </div>
+    </div>
     <!-- 카드 -->
-    <div class="row p-4">
-      <div class="col-sm-4" v-for="a in 3" :key="a">
+    <div class="row gx-2">
+      <div class="col-sm-4 p-1" v-for="a in 3" :key="a">
         <div class="card">
-          <div class="card-body">
+          <p class="card-text insta-container">
+            <img src="./assets/insta_sample_thumbnail.jpg" />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="collapse" id="collapseInsta">
+      <div class="row gx-2">
+        <div class="col-sm-4 p-1" v-for="a in 9" :key="a">
+          <div class="card">
             <p class="card-text insta-container">
               <img src="./assets/insta_sample_thumbnail.jpg" />
             </p>
-            <h5 class="card-title">IT대학 학생회 신입부원 모집(키워드)</h5>
           </div>
         </div>
       </div>
     </div>
+    <!-- 카드 -->
+
     <!-- 테이블 -->
     <table class="table table-hover table-bordered m-auto shadow">
       <thead>
@@ -173,8 +170,10 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -196,5 +195,10 @@ export default {
 .insta-container > img {
   width: 100%;
   height: 100%;
+}
+
+.nav-logo {
+  height: 50px;
+  object-fit: cover;
 }
 </style>
