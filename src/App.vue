@@ -17,7 +17,10 @@
         <div class="modal-body p-5 pt-0 pb-0"></div>
         <div class="mx-5">
           <div class="img-container">
-            <img src="./assets/kakao_login_large_narrow.png" />
+            <img
+              src="./assets/kakao_login_large_narrow.png"
+              @click="loginWithKakao"
+            />
             <img src="./assets/btn_google_signin_dark_normal_web@2x.png" />
           </div>
         </div>
@@ -166,6 +169,39 @@
 export default {
   name: "App",
   components: {},
+  methods: {
+    async loginWithKakao() {
+      if (!(await this.isKakaoInitialized())) {
+        // SDK 로드
+        window.Kakao.init("3b666133f33102bfed3844b9623b5028");
+      }
+      window.Kakao.Auth.authorize({
+        redirectUri: "http://localhost:8080/oauth",
+      });
+    },
+    isKakaoInitialized() {
+      return new Promise((resolve) => {
+        if (window.Kakao.isInitialized()) {
+          resolve(true);
+        } else {
+          window.kakaoAsyncInit = () => {
+            window.Kakao.isInitialized() ? resolve(true) : resolve(false);
+          };
+        }
+      });
+    },
+  },
+  mounted() {
+    // SDK 로드
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    script.onload = () => {
+      window.Kakao.init("3b666133f33102bfed3844b9623b5028");
+      window.kakaoAsyncInit && window.kakaoAsyncInit();
+    };
+    document.head.appendChild(script);
+  },
 };
 </script>
 
