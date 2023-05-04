@@ -176,7 +176,7 @@ export default {
         window.Kakao.init("3b666133f33102bfed3844b9623b5028");
       }
       window.Kakao.Auth.authorize({
-        redirectUri: "http://localhost:8080/",
+        redirectUri: "https://moassu.netlify.app/oauth",
       });
     },
     isKakaoInitialized() {
