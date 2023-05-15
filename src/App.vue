@@ -72,103 +72,113 @@
         </div>
       </div>
     </nav>
-
-    <nav class="navbar bg-f0 rounded">
-      <div class="container-fluid">
-        <span></span>
-        <span>
-          <button
-            class="btn btn-light mx-2"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseCheck"
-            aria-expanded="false"
-            aria-controls="collapseCheck"
-          >
-            필터
-          </button>
-          <button
-            class="btn btn-light"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseInsta"
-            aria-expanded="false"
-            aria-controls="collapseInsta"
-          >
-            더보기
-          </button>
-        </span>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#home-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="home-tab-pane"
+          aria-selected="true"
+        >
+          학교
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="profile-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#profile-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="profile-tab-pane"
+          aria-selected="false"
+        >
+          펀시스템
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="contact-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#contact-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="contact-tab-pane"
+          aria-selected="false"
+        >
+          학과
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="disabled-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#disabled-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="disabled-tab-pane"
+          aria-selected="false"
+        >
+          학생회
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home-tab-pane"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+        tabindex="0"
+      >
+        <SchoolNotice />
       </div>
-    </nav>
-
-    <div class="collapse text-start" id="collapseCheck">
-      <div class="form-check" v-for="a in 6" :key="a">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Default checkbox
-        </label>
+      <div
+        class="tab-pane fade"
+        id="profile-tab-pane"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+        tabindex="0"
+      >
+        <FunSystem />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="contact-tab-pane"
+        role="tabpanel"
+        aria-labelledby="contact-tab"
+        tabindex="0"
+      >
+        <DepartmentNotice />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="disabled-tab-pane"
+        role="tabpanel"
+        aria-labelledby="disabled-tab"
+        tabindex="0"
+      >
+        <StudentCouncil />
       </div>
     </div>
-    <!-- 카드 -->
-    <div class="row gx-2">
-      <div class="col-sm-4 p-1" v-for="a in 3" :key="a">
-        <div class="card">
-          <p class="card-text insta-container">
-            <img src="./assets/insta_sample_thumbnail.jpg" />
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="collapse" id="collapseInsta">
-      <div class="row gx-2">
-        <div class="col-sm-4 p-1" v-for="a in 9" :key="a">
-          <div class="card">
-            <p class="card-text insta-container">
-              <img src="./assets/insta_sample_thumbnail.jpg" />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 카드 -->
-
-    <!-- 테이블 -->
-    <table class="table table-hover table-bordered m-auto shadow">
-      <thead>
-        <tr class="bg-f0">
-          <th scope="col">제목</th>
-          <th scope="col">주최기관</th>
-          <th scope="col">내용</th>
-          <th scope="col">신청시작일</th>
-          <th scope="col">마감일</th>
-          <th scope="col">활동시작일</th>
-          <th scope="col">활동마감일</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="a in 13" :key="a">
-          <th scope="row">Dummy</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
 <script>
+import SchoolNotice from "./components/SchoolNotice.vue";
+import FunSystem from "./components/FunSystem.vue";
+import DepartmentNotice from "./components/DepartmentNotice.vue";
+import StudentCouncil from "./components/StudentCouncil.vue";
 export default {
   name: "App",
-  components: {},
+  components: { SchoolNotice, FunSystem, DepartmentNotice, StudentCouncil },
   methods: {
     async loginWithKakao() {
       if (!(await this.isKakaoInitialized())) {
