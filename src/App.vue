@@ -184,7 +184,7 @@ export default {
     async loginWithKakao() {
       if (!(await this.isKakaoInitialized())) {
         // SDK 로드
-        window.Kakao.init("3b666133f33102bfed3844b9623b5028");
+        window.Kakao.init("b43ade7c4e3832897f45cbbeaa0d19d7");
       }
       window.Kakao.Auth.authorize({
         redirectUri: "https://moassu.netlify.app/oauth",
@@ -208,7 +208,7 @@ export default {
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
     script.async = true;
     script.onload = () => {
-      window.Kakao.init("3b666133f33102bfed3844b9623b5028");
+      window.Kakao.init("b43ade7c4e3832897f45cbbeaa0d19d7");
       window.kakaoAsyncInit && window.kakaoAsyncInit();
     };
     document.head.appendChild(script);
