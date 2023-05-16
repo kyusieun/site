@@ -6,21 +6,22 @@
 </template>
 
 <script>
+// import axios from "axios";
 export default {
   props: ["code"],
-  methods: {
-    sendCode() {
-      // Make an HTTP request to your backend API with the code
-      // For example, using Axios:
-      axios
-        .post("/api/auth/kakao", { code: this.code })
-        .then((response) => {
-          // Handle successful response
-        })
-        .catch((error) => {
-          // Handle error
-        });
-    },
-  },
+  // methods: {
+  //   sendCode() {
+  //     // Make an HTTP request to your backend API with the code
+  //     // For example, using Axios:
+  //     axios
+  //       .post("/api/auth/kakao", { code: this.code })
+  //       .then((response) => {
+
+  //       })
+  //       .catch((error) => {
+
+  //       });
+  //   },
+  // },
 };
 </script>
