@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <tr v-for="data in CompSci" :key="data.title">
-        <th scope="row">{{ data.num }}</th>
+        <th scope="row">{{ data.admin }}</th>
         <td>
           <a :href="data.url">{{ data.title }}</a>
         </td>
@@ -21,12 +21,15 @@
 </template>
 
 <script>
-import CompSci from "../json/CompSci.json";
+import CompSci from "../json/homepage_computer.json";
+import Soft from "../json/homepage_software.json";
+
 export default {
   name: "DepartmentNotice",
   data() {
     return {
       CompSci: CompSci,
+      Soft: Soft,
     };
   },
 };
