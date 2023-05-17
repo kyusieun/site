@@ -2,13 +2,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">카테고리</th>
-        <th scope="col">제목</th>
-        <th scope="col">날짜</th>
+        <th @click="sortTable('category')" scope="col">카테고리</th>
+        <th @click="sortTable('title')" scope="col">제목</th>
+        <th @click="sortTable('date')" scope="col">날짜</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="data in univJson" :key="data.title">
+      <tr v-for="data in sortedItems" :key="data.url">
         <th scope="row">{{ data.category }}</th>
         <td>
           <a :href="data.url">{{ data.title }}</a>
@@ -25,8 +25,32 @@ export default {
   name: "SchoolNotice",
   data() {
     return {
+      sortKey: "", // 사용자 클릭에 의해 변경되는 정렬 기준
+      sortDesc: false, // 정렬 순서 (오름차순: false, 내림차순: true)
       univJson: univJson,
     };
+  },
+  computed: {
+    sortedItems() {
+      const key = this.sortKey;
+      const order = this.sortDesc ? -1 : 1;
+
+      return this.univJson.slice().sort((a, b) => {
+        if (a[key] < b[key]) return -order;
+        if (a[key] > b[key]) return order;
+        return 0;
+      });
+    },
+  },
+  methods: {
+    sortTable(key) {
+      if (this.sortKey === key) {
+        this.sortDesc = !this.sortDesc;
+      } else {
+        this.sortKey = key;
+        this.sortDesc = false;
+      }
+    },
   },
 };
 </script>

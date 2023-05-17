@@ -2,14 +2,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-
-        <th scope="col">제목</th>
-        <th scope="col">날짜</th>
+        <th @click="sortTable('admin')" scope="col">#</th>
+        <th @click="sortTable('title')" scope="col">제목</th>
+        <th @click="sortTable('date')" scope="col">날짜</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="data in CompSci" :key="data.title">
+      <tr v-for="data in sortedItems" :key="data.url">
         <th scope="row">{{ data.admin }}</th>
         <td>
           <a :href="data.url">{{ data.title }}</a>
@@ -30,7 +29,32 @@ export default {
     return {
       CompSci: CompSci,
       Soft: Soft,
+      combinedData: [...CompSci, ...Soft],
+      sortKey: "", // 사용자 클릭에 의해 변경되는 정렬 기준
+      sortDesc: false, // 정렬 순서 (오름차순: false, 내림차순: true)
     };
+  },
+  computed: {
+    sortedItems() {
+      const key = this.sortKey;
+      const order = this.sortDesc ? -1 : 1;
+
+      return this.combinedData.slice().sort((a, b) => {
+        if (a[key] < b[key]) return -order;
+        if (a[key] > b[key]) return order;
+        return 0;
+      });
+    },
+  },
+  methods: {
+    sortTable(key) {
+      if (this.sortKey === key) {
+        this.sortDesc = !this.sortDesc;
+      } else {
+        this.sortKey = key;
+        this.sortDesc = false;
+      }
+    },
   },
 };
 </script>
