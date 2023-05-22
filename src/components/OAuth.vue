@@ -12,7 +12,7 @@ export default {
     sendCode() {
       const code = this.$route.query.code; // 인가 코드 값을 할당하세요
 
-      const url = `http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/oauth2/login/kakao/${code}`;
+      const url = `https://moassu.com:8080/oauth2/login/kakao/${code}`;
 
       axios
         .post(url)
