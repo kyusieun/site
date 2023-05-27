@@ -21,7 +21,6 @@
               src="./assets/kakao_login_large_narrow.png"
               @click="loginWithKakao"
             />
-            <img src="./assets/btn_google_signin_dark_normal_web@2x.png" />
           </div>
         </div>
         <div class="modal-footer">
@@ -173,6 +172,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import SchoolNotice from "./components/SchoolNotice.vue";
 import FunSystem from "./components/FunSystem.vue";
 import DepartmentNotice from "./components/DepartmentNotice.vue";
@@ -181,14 +181,22 @@ export default {
   name: "App",
   components: { SchoolNotice, FunSystem, DepartmentNotice, StudentCouncil },
   methods: {
+    // async loginWithKakao() {
+    //   if (!(await this.isKakaoInitialized())) {
+    //     // SDK 로드
+    //     window.Kakao.init("b43ade7c4e3832897f45cbbeaa0d19d7");
+    //   }
+    //   window.Kakao.Auth.authorize({
+    //     redirectUri: "https://moassu.netlify.app/oauth",
+    //   });
+    // },
     async loginWithKakao() {
-      if (!(await this.isKakaoInitialized())) {
-        // SDK 로드
-        window.Kakao.init("b43ade7c4e3832897f45cbbeaa0d19d7");
-      }
-      window.Kakao.Auth.authorize({
-        redirectUri: "https://moassu.netlify.app/oauth",
-      });
+      const { data } = await axios.get(
+        "https://kauth.kakao.com/oauth/authorize?client_id=b43ade7c4e3832897f45cbbeaa0d19d7&redirect_uri=https://moassu.netlify.app/oauth&response_type=code"
+      );
+
+      // 생성한 URL로 페이지를 이동합니다.
+      window.location.href = data;
     },
     isKakaoInitialized() {
       return new Promise((resolve) => {
