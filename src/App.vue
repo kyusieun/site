@@ -181,6 +181,9 @@ import StudentCouncil from "./components/StudentCouncil.vue";
 export default {
   name: "App",
   components: { SchoolNotice, FunSystem, DepartmentNotice, StudentCouncil },
+  created() {
+    console.log(this.isLoggedIn);
+  },
   computed: {
     isLoggedIn() {
       // 세션 스토리지에서 로그인 정보 가져오기
