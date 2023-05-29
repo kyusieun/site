@@ -1,13 +1,11 @@
-<template>
-  <div>
-    <p>Received authorization code: {{ code }}</p>
-    <button @click="sendCode">Send code to backend</button>
-  </div>
-</template>
+<template></template>
 
 <script>
 import axios from "axios";
 export default {
+  mounted() {
+    this.sendCode();
+  },
   methods: {
     sendCode() {
       const code = this.$route.query.code; // 인가 코드 값을 할당하세요
