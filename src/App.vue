@@ -60,6 +60,7 @@
           </form>
           <!-- Button trigger modal -->
           <button
+            v-if="!isLoggedIn"
             type="button"
             class="btn btn-outline-dark"
             data-bs-toggle="modal"
@@ -68,6 +69,7 @@
           >
             로그인
           </button>
+          <button v-else>로그아웃</button>
         </div>
       </div>
     </nav>
@@ -179,6 +181,13 @@ import StudentCouncil from "./components/StudentCouncil.vue";
 export default {
   name: "App",
   components: { SchoolNotice, FunSystem, DepartmentNotice, StudentCouncil },
+  computed: {
+    isLoggedIn() {
+      // 세션 스토리지에서 로그인 정보 가져오기
+      const userInfo = sessionStorage.getItem("userInfo");
+      return userInfo !== null; // 로그인 정보가 있는지 확인
+    },
+  },
   methods: {
     async loginWithKakao() {
       if (!(await this.isKakaoInitialized())) {
