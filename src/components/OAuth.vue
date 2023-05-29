@@ -23,6 +23,14 @@ export default {
           //성공
           console.log(response);
           console.log(code);
+          // 로그인 성공 후 받은 토큰과 로그인 정보
+          const token = response.data.token;
+          const userInfo = response.data;
+
+          // 세션 스토리지에 저장
+          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+
           // 로딩 완료 처리
           this.isLoading = false;
           // 메인 화면으로 리디렉션
@@ -32,6 +40,8 @@ export default {
           //실패
           console.log(error);
           console.log(code);
+          // 메인 화면으로 리디렉션
+          this.$router.push("/");
         });
     },
   },
