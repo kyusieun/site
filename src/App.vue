@@ -69,7 +69,9 @@
           >
             로그인
           </button>
-          <button v-else>로그아웃</button>
+          <button v-else type="button" class="btn btn-outline-dark">
+            로그아웃
+          </button>
         </div>
       </div>
     </nav>
