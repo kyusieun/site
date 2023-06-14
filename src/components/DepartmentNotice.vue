@@ -34,7 +34,7 @@ export default {
   mounted() {
     axios
       .get(
-        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/department?page=0&size=15&sort=writeDate,DESC"
+        "https://moassu.com:443/list/department?page=0&size=15&sort=writeDate,DESC"
       )
       .then((response) => {
         this.items = response.data;
