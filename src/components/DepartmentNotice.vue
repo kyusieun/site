@@ -11,7 +11,7 @@
       <tr v-for="data in sortedItems" :key="data.url">
         <th scope="row">{{ data.major }}</th>
         <td>
-          <a :href="data.url">{{ data.title }}</a>
+          <a :href="data.link">{{ data.title }}</a>
         </td>
         <td>{{ data.date }}</td>
       </tr>
@@ -34,7 +34,7 @@ export default {
   mounted() {
     axios
       .get(
-        "https://moassu.com:443/list/department?page=0&size=15&sort=writeDate,DESC"
+        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/department?page=0&size=15&sort=writeDate,DESC"
       )
       .then((response) => {
         this.items = response.data;
