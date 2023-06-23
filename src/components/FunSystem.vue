@@ -18,6 +18,23 @@
       </div> -->
     </div>
   </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li v-for="i in 9" :key="i" class="page-item">
+        <a class="page-link" href="#">{{ i }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -34,7 +51,7 @@ export default {
   mounted() {
     axios
       .get(
-        "https://moassu.com:443/list/fun?page=0&size=15&sort=applyStartDate,ASC"
+        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/fun?page=0&size=12&sort=applyStartDate,ASC"
       )
       .then((response) => {
         this.items = response.data;

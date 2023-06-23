@@ -2,68 +2,92 @@
   <table class="table">
     <thead>
       <tr>
-        <th @click="sortTable('category')" scope="col">카테고리</th>
-        <th @click="sortTable('title')" scope="col">제목</th>
-        <th @click="sortTable('date')" scope="col">날짜</th>
+        <th scope="col">카테고리</th>
+        <th scope="col">제목</th>
+        <th scope="col">날짜</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="data in sortedItems" :key="data.url">
-        <th scope="row">{{ data.category }}</th>
+      <tr v-for="university in universities" :key="university.id">
+        <th scope="row">{{ university.category }}</th>
         <td>
-          <a :href="data.link">{{ data.title }}</a>
+          <a :href="university.link">{{ university.title }}</a>
         </td>
-        <td>{{ data.date }}</td>
+        <td>{{ university.date }}</td>
       </tr>
     </tbody>
   </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li v-for="i in 9" :key="i" class="page-item">
+        <a class="page-link" href="#">{{ i }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
 import axios from "axios";
-import univJson from "../json/homepage_univ.json";
+
 export default {
   name: "SchoolNotice",
   data() {
     return {
-      sortKey: "", // 사용자 클릭에 의해 변경되는 정렬 기준
-      sortDesc: false, // 정렬 순서 (오름차순: false, 내림차순: true)
-      univJson: univJson,
-      items: [],
+      universities: [],
+      currentPage: 0,
+      pageSize: 15,
+      sort: "writeDate,ASC",
     };
   },
   mounted() {
     axios
       .get(
-        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/univ?page=0&size=20&sort=writeDate,ASC"
+        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/univ?page=0&size=15&sort=writeDate,ASC"
       )
       .then((response) => {
         this.items = response.data;
+        console.log(response);
       })
       .catch((error) => {
         console.error(error);
       });
   },
-  computed: {
-    sortedItems() {
-      const key = this.sortKey;
-      const order = this.sortDesc ? -1 : 1;
-
-      return this.items.slice().sort((a, b) => {
-        if (a[key] < b[key]) return -order;
-        if (a[key] > b[key]) return order;
-        return 0;
-      });
-    },
+  created() {
+    this.fetchUniversities();
   },
   methods: {
-    sortTable(key) {
-      if (this.sortKey === key) {
-        this.sortDesc = !this.sortDesc;
-      } else {
-        this.sortKey = key;
-        this.sortDesc = false;
-      }
+    fetchUniversities() {
+      const apiUrl =
+        "http://ec2-3-39-206-176.ap-northeast-2.compute.amazonaws.com:8080/list/univ";
+      const params = {
+        page: this.currentPage,
+        size: this.pageSize,
+        sort: this.sort,
+      };
+
+      axios
+        .get(apiUrl, { params })
+        .then((response) => {
+          this.universities = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    // 페이지 변경 시 데이터 업데이트
+    onPageChange(page) {
+      this.currentPage = page;
+      this.fetchUniversities();
     },
   },
 };

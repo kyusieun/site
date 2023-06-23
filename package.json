@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.0",
+    "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "http": "^0.0.1-security",
-    "vue": "^3.2.13",
+    "vue": "^3.3.4",
     "vue-kakao-login": "^1.0.5",
+    "vue-pagination-2": "^3.1.0",
     "vue-router": "^4.2.0",
     "vuex": "^4.0.2"
   },

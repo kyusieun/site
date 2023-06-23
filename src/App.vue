@@ -35,6 +35,129 @@
       </div>
     </div>
   </div>
+  <!-- Sub Modal -->
+  <div
+    class="modal fade"
+    id="subModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">구독하기</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="row p-1">
+              <div class="col-sm-6 text-start">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >학교공지</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-6 text-start">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckChecked"
+                    checked=""
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckChecked"
+                    >펀시스템</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-6 text-start">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckChecked"
+                    checked=""
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckChecked"
+                    >학과공지</label
+                  >
+                </div>
+              </div>
+              <div class="col-sm-6 text-start">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >학생회공지</label
+                  >
+                </div>
+              </div>
+              <div style="margin-top: 20px">
+                <form @submit.prevent="addKeyword" class="hstack gap-3">
+                  <input
+                    class="form-control me-auto"
+                    type="text"
+                    v-model="newKeyword"
+                    placeholder="키워드 입력"
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-secondary"
+                    style="white-space: nowrap"
+                  >
+                    추가
+                  </button>
+                </form>
+                <div class="text-start">
+                  <div
+                    v-for="(keyword, index) in keywords"
+                    :key="index"
+                    class="keyword"
+                    style="margin-top: 10px"
+                  >
+                    <span class="fs-5 text-start">{{ keyword }}</span>
+                    <button
+                      @click="removeKeyword(index)"
+                      class="btn-close"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            닫기
+          </button>
+          <button type="button" class="btn btn-primary">저장하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container mb-5">
     <!-- Navbar -->
@@ -47,7 +170,16 @@
               <a class="nav-link active" aria-current="page" href="#">리스트</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">쪽지</a>
+              <button
+                v-if="true"
+                type="button"
+                class="nav-link"
+                data-bs-toggle="modal"
+                data-bs-target="#subModal"
+                style="margin-left: 10px"
+              >
+                구독
+              </button>
             </li>
           </ul>
           <form class="d-flex">
@@ -59,8 +191,9 @@
             />
           </form>
           <!-- Button trigger modal -->
+          <!-- v-if="!isLoggedIn" -->
           <button
-            v-if="!isLoggedIn"
+            v-if="true"
             type="button"
             class="btn btn-outline-dark"
             data-bs-toggle="modal"
@@ -182,6 +315,12 @@ import DepartmentNotice from "./components/DepartmentNotice.vue";
 import StudentCouncil from "./components/StudentCouncil.vue";
 export default {
   name: "App",
+  data() {
+    return {
+      newKeyword: "",
+      keywords: [],
+    };
+  },
   components: { SchoolNotice, FunSystem, DepartmentNotice, StudentCouncil },
   created() {
     console.log(this.isLoggedIn);
@@ -194,6 +333,15 @@ export default {
     },
   },
   methods: {
+    addKeyword() {
+      if (this.newKeyword) {
+        this.keywords.push(this.newKeyword);
+        this.newKeyword = "";
+      }
+    },
+    removeKeyword(index) {
+      this.keywords.splice(index, 1);
+    },
     async loginWithKakao() {
       if (!(await this.isKakaoInitialized())) {
         // SDK 로드

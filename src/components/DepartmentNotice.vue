@@ -2,7 +2,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th @click="sortTable('admin')" scope="col">학과</th>
+        <th @click="sortTable('admin')" scope="col">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>학과</option>
+            <option value="1">AI융합학부</option>
+            <option value="2">전자정보공학부</option>
+            <option value="3">컴퓨터학부</option>
+          </select>
+        </th>
         <th @click="sortTable('title')" scope="col">제목</th>
         <th @click="sortTable('date')" scope="col">날짜</th>
       </tr>
@@ -17,6 +24,23 @@
       </tr>
     </tbody>
   </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li v-for="i in 9" :key="i" class="page-item">
+        <a class="page-link" href="#">{{ i }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
